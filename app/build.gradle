@@ -1,37 +1,103 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    buildToolsVersion rootProject.ext.buildToolVersions
 
     defaultConfig {
         applicationId "com.nauman404.moviechallenge"
-        minSdkVersion 19
-        targetSdkVersion 29
+        minSdkVersion rootProject.ext.minSdkVersions
+        targetSdkVersion rootProject.ext.targetSdkVersions
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildFeatures{
+        dataBinding = true
+    }
+
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.1'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Android
+    implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    implementation "androidx.cardview:cardview:$cardVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
+    implementation "androidx.multidex:multidex:$multidexVersion"
+
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinescoreVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesAndroidVersion"
+
+    // Jetpack
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodelKtxVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedataKtxVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleKtxVersion"
+
+    // Room components
+    implementation "androidx.room:room-runtime:$roomRuntimeVersion"
+    kapt "androidx.room:room-compiler:$roomCompilerVersion"
+    implementation "androidx.room:room-ktx:$roomKtxVersion"
+    implementation "androidx.paging:paging-runtime:$paging"
+    implementation "androidx.paging:paging-runtime-ktx:2.1.2"
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$navFragmentKtxVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navUiKtxVersion"
+
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$kotlinMoshiVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$moshiConveterVersion"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiCodegenVersion"
+
+    // DI - Dagger 2
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+
+    //Image
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+    //Others
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+//    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    //Testing
+    testImplementation "junit:junit:$jUnitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$jUnitExtVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
 
 }
