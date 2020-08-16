@@ -1,6 +1,7 @@
 package com.nauman404.moviechallenge
 
 import androidx.multidex.MultiDexApplication
+import com.nauman404.moviechallenge.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -14,6 +15,12 @@ class MovieApp : MultiDexApplication(), HasAndroidInjector {
 
     override fun onCreate() {
         super.onCreate()
+
+        // Initialize Dependency Injection
+        DaggerAppComponent.builder()
+            .create(this)
+            .build()
+            .inject(this)
 
         if (BuildConfig.DEBUG) Timber.plant(MyDebugTree())
 

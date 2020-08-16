@@ -100,4 +100,6 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
 
+    implementation project(path: ':core')
+    implementation project(path: ':data')
 }
