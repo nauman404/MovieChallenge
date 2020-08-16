@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MovieChallenge</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="movie_fragment_label">Movies</string>
+    <string name="movie_detail_fragment_label">Movie Detail</string>
+
 </resources>
