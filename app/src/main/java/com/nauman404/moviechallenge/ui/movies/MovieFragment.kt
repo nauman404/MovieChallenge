@@ -2,6 +2,7 @@ package com.nauman404.moviechallenge.ui.movies
 
 
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,7 +12,6 @@ import com.nauman404.moviechallenge.R
 import com.nauman404.moviechallenge.databinding.FragmentMoviesBinding
 import com.nauman404.moviechallenge.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.progressbar.view.*
-import timber.log.Timber
 
 
 /**
@@ -22,8 +22,18 @@ class MovieFragment : BaseFragment<FragmentMoviesBinding>(
 
     private val viewModel: MovieViewModel by viewModels { viewModelProvider }
 
+    lateinit var moviesAdapter: MoviesAdapter
 
     override fun onInitDataBinding() {
+
+        moviesAdapter = MoviesAdapter()
+        setRecyclerAdapter(false)
+        binding.moviesRecycler.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
         loadDataProcess()
         initObservers()
@@ -33,6 +43,8 @@ class MovieFragment : BaseFragment<FragmentMoviesBinding>(
     private fun loadDataProcess() {
         if (!MovieUtils.isMoviesSavedLocal(requireContext())) {
             parseData()
+        }else{
+            setRecyclerAdapter(false)
         }
     }
 
@@ -47,11 +59,18 @@ class MovieFragment : BaseFragment<FragmentMoviesBinding>(
             binding.root.progressbar.visibility = View.GONE
     }
 
+    private fun showEmptyData() {
+        binding.errorText.visibility = View.VISIBLE
+        binding.root.progressbar.visibility = View.GONE
+        binding.moviesRecycler.visibility = View.GONE
+    }
+
     private fun initObservers() {
         viewModel.moviesLiveData.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
                 is State.Loading -> showLoading(true)
                 is State.Success -> {
+                    binding.moviesRecycler.visibility = View.VISIBLE
                     MovieUtils.saveMoviesLocal(requireActivity().applicationContext)
                     showLoading(false)
                 }
@@ -60,6 +79,22 @@ class MovieFragment : BaseFragment<FragmentMoviesBinding>(
                 }
             }
         })
+
+        viewModel.movieList.observe(this, Observer {
+            showLoading(false)
+            moviesAdapter.submitList(it)
+            setRecyclerAdapter(false)
+        })
+
+    }
+
+    private fun setRecyclerAdapter(isSearch: Boolean){
+        if(isSearch)
+        else binding.moviesRecycler.adapter = moviesAdapter
+
+        binding.errorText.visibility = View.GONE
+        binding.root.progressbar.visibility = View.GONE
+        binding.moviesRecycler.visibility = View.VISIBLE
 
     }
 }

@@ -1,6 +1,8 @@
 package com.nauman404.moviechallenge.ui.movies
 
 import androidx.lifecycle.*
+import androidx.paging.PagedList
+import androidx.paging.toLiveData
 import com.nauman404.core.utils.StringUtils
 import com.nauman404.data.local.models.Movie
 import com.nauman404.data.local.models.MoviesResponse
@@ -22,6 +24,8 @@ class MovieViewModel @Inject constructor(private val movieRepository: MovieRepos
 
     val moviesLiveData: LiveData<State<List<Movie>>>
         get() = _moviesLiveData
+
+    val movieList: LiveData<PagedList<Any>> = movieRepository.moviesDataSource().toLiveData(pageSize = 50)
 
     fun parseAndSaveMovies(inputStream: InputStream) {
         viewModelScope.launch(Dispatchers.IO) {

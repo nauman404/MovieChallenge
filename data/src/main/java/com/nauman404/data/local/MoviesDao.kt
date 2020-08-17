@@ -1,5 +1,6 @@
 package com.nauman404.data.local
 
+import androidx.paging.DataSource
 import androidx.room.*
 import com.nauman404.data.local.models.Movie
 
@@ -13,5 +14,8 @@ interface MoviesDao {
     fun insertAll(movies: List<Movie>)
 
     @Query("SELECT * FROM movies ORDER BY id ASC")
-    fun allMovies(): List<Movie>
+    fun getAllMovies(): List<Movie>
+
+    @Query("SELECT * FROM movies ORDER BY id ASC")
+    fun moviesDataSource(): DataSource.Factory<Int, Movie>
 }
