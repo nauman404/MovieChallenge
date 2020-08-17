@@ -2,6 +2,7 @@ package com.nauman404.moviechallenge.ui.movies
 
 
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -12,6 +13,7 @@ import com.nauman404.moviechallenge.R
 import com.nauman404.moviechallenge.databinding.FragmentMoviesBinding
 import com.nauman404.moviechallenge.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.progressbar.view.*
+import timber.log.Timber
 
 
 /**
@@ -23,10 +25,26 @@ class MovieFragment : BaseFragment<FragmentMoviesBinding>(
     private val viewModel: MovieViewModel by viewModels { viewModelProvider }
 
     lateinit var moviesAdapter: MoviesAdapter
+    lateinit var moviesSearchAdapter: MoviesAdapter
+
 
     override fun onInitDataBinding() {
 
+        binding.movieSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Timber.e(query)
+                return false
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                if(query.isNullOrEmpty()) loadDataProcess()
+                else movieByTitle(query)
+                return true
+            }
+        })
+
         moviesAdapter = MoviesAdapter()
+        moviesSearchAdapter = MoviesAdapter()
         setRecyclerAdapter(false)
         binding.moviesRecycler.addItemDecoration(
             DividerItemDecoration(
@@ -59,6 +77,9 @@ class MovieFragment : BaseFragment<FragmentMoviesBinding>(
             binding.root.progressbar.visibility = View.GONE
     }
 
+    private fun movieByTitle(title:String){
+    }
+
     private fun showEmptyData() {
         binding.errorText.visibility = View.VISIBLE
         binding.root.progressbar.visibility = View.GONE
@@ -89,7 +110,7 @@ class MovieFragment : BaseFragment<FragmentMoviesBinding>(
     }
 
     private fun setRecyclerAdapter(isSearch: Boolean){
-        if(isSearch)
+        if(isSearch) binding.moviesRecycler.adapter = moviesSearchAdapter
         else binding.moviesRecycler.adapter = moviesAdapter
 
         binding.errorText.visibility = View.GONE
