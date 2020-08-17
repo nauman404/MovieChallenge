@@ -19,7 +19,7 @@ class ApiModule {
     @Singleton
     @Provides
     fun provideRetrofitService(client: OkHttpClient): ApiService = Retrofit.Builder()
-        .baseUrl("https://google.com") //TODO to be added
+        .baseUrl(BuildConfig.BASE_API_URL)
         .client(client)
         .addConverterFactory(
             MoshiConverterFactory.create(

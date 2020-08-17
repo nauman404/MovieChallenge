@@ -75,6 +75,7 @@ dependencies {
 
     //Others
     implementation "com.jakewharton.timber:timber:$timberVersion"
+    implementation "androidx.preference:preference-ktx:$preferenceVersion"
 
     //Testing
     testImplementation "junit:junit:$jUnitVersion"

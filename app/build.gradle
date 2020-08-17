@@ -17,6 +17,9 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        buildConfigField 'String', 'API_KEY', "\"88ad0f80ff8cf451c9393a1b201174b4\""
+        buildConfigField 'String', 'BASE_API_URL', "\"https://api.flickr.com/\""
+
     }
 
 

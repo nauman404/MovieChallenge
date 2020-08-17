@@ -2,8 +2,10 @@ package com.nauman404.data.repositories
 
 import androidx.paging.DataSource
 import com.nauman404.data.local.MoviesDao
+import com.nauman404.data.local.models.ImagesWrapper
 import com.nauman404.data.local.models.Movie
 import com.nauman404.data.remote.ApiService
+import retrofit2.Response
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor (
@@ -19,6 +21,10 @@ class MovieRepository @Inject constructor (
         return moviesDao.moviesDataSource().map {
             it as Any
         }
+    }
+
+    suspend fun getImagesRequest(apiKey: String, title: String, page:Int, perPage: Int): Response<ImagesWrapper> {
+        return apiService.getImages(apiKey =  apiKey, format = "json", callback =  1, title = title, page = page, perPage = perPage)
     }
 
 }

@@ -1,6 +1,7 @@
 package com.nauman404.moviechallenge.di.module
 
 import androidx.lifecycle.ViewModel
+import com.nauman404.moviechallenge.ui.moviedetails.MovieDetailsViewModel
 import com.nauman404.moviechallenge.ui.movies.MovieViewModel
 import dagger.Binds
 import dagger.MapKey
@@ -24,5 +25,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MovieViewModel::class)
     abstract fun bindMovieViewModel(viewModel: MovieViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MovieDetailsViewModel::class)
+    abstract fun bindMovieDetailsViewModel(viewModel: MovieDetailsViewModel): ViewModel
 
 }

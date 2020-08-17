@@ -1,12 +1,12 @@
 package com.nauman404.core.utils
 
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 
 
 object MovieUtils {
 
-    private const val MOVIES_SAVED_LOCAL = "movies_saved_local"
+    private const val MOVIES_SAVED_LOCAL = "is_movies_saved_local"
 
     fun saveMoviesLocal(context: Context) {
         val sp = PreferenceManager.getDefaultSharedPreferences(context)
