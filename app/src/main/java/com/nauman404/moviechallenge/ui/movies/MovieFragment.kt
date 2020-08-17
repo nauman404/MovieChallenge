@@ -78,6 +78,12 @@ class MovieFragment : BaseFragment<FragmentMoviesBinding>(
     }
 
     private fun movieByTitle(title:String){
+        viewModel.movieByTitle(title).observe(this, Observer {
+            showLoading(false)
+            moviesSearchAdapter.submitList(it)
+            if(it.size > 0) setRecyclerAdapter(true)
+            else showEmptyData()
+        })
     }
 
     private fun showEmptyData() {

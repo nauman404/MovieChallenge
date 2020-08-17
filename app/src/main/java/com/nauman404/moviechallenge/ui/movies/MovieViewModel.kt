@@ -27,6 +27,13 @@ class MovieViewModel @Inject constructor(private val movieRepository: MovieRepos
 
     val movieList: LiveData<PagedList<Any>> = movieRepository.moviesDataSource().toLiveData(pageSize = 50)
 
+    fun movieByTitle(title: String): LiveData<PagedList<Any>>{
+        val dataSourceFactory = MovieDataSourceFactory(movieRepository, title)
+        return dataSourceFactory.toLiveData(
+            pageSize = 25
+        )
+    }
+
     fun parseAndSaveMovies(inputStream: InputStream) {
         viewModelScope.launch(Dispatchers.IO) {
             _moviesLiveData.postValue(State.loading())

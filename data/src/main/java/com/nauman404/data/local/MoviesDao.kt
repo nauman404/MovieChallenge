@@ -18,4 +18,7 @@ interface MoviesDao {
 
     @Query("SELECT * FROM movies ORDER BY id ASC")
     fun moviesDataSource(): DataSource.Factory<Int, Movie>
+
+    @Query("SELECT * FROM movies WHERE title LIKE '%' || :title || '%' ORDER BY year DESC, rating DESC")
+    fun moviesByTitle(title: String): List<Movie>
 }
