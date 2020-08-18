@@ -1,0 +1,22 @@
+{
+  "photos": {
+    "page": 1,
+    "pages": 19480529,
+    "perpage": 1,
+    "total": "19480529",
+    "photo": [
+      {
+        "id": "50238036981",
+        "owner": "35835471@N00",
+        "secret": "2b9848bd00",
+        "server": "65535",
+        "farm": 66,
+        "title": "Castlerea",
+        "ispublic": 1,
+        "isfriend": 0,
+        "isfamily": 0
+      }
+    ]
+  },
+  "stat": "ok"
+}
