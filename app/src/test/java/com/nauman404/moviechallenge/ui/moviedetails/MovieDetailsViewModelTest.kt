@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.nauman404.data.repositories.MovieRepository
 import com.nauman404.moviechallenge.BuildConfig
-import com.nauman404.data.TestData
+import com.nauman404.moviechallenge.TestData
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
