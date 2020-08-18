@@ -1,16 +1,84 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.3.72"
+
+    ext {
+        kotlin_version = '1.3.72'
+    }
+    ext.compileSdkVersions = '29'
+    ext.targetSdkVersions = '29'
+    ext.buildToolVersions = '29.0.3'
+    ext.minSdkVersions = '19'
+
+    ext.kotlinVersion = '1.3.72'
+    ext.okHttpVersion = '4.7.2'
+    ext.supportLibVersion = '28.0.0'
+    ext.constraintVersion = '1.1.3'
+    ext.eventbusVersion = '3.2.0'
+    ext.glideVersion = '4.11.0'
+    ext.timberVersion = '4.7.1'
+    ext.daggerVersion = '2.28'
+    ext.multidexVersion = '2.0.1'
+
+    //Coroutines
+    ext.coroutinescoreVersion = '1.3.7'
+    ext.coroutinesAndroidVersion = '1.3.7'
+
+    //Android
+    ext.legacyV4Version = "1.0.0"
+    ext.vectorVersion = "1.1.0"
+    ext.materialVersion = "1.2.0"
+    ext.swipeVersion = "1.1.0"
+    ext.appcompatVersion = "1.2.0"
+    ext.workerVersion = "2.3.4"
+    ext.cardVersion = "1.0.0"
+    ext.recyclerVersion = "1.1.0"
+    ext.constraintVersion = "1.1.3"
+
+    //Jetpack
+    ext.coreKtxVersion = "1.3.1"
+    ext.viewmodelKtxVersion = "2.2.0"
+    ext.livedataKtxVersion = "2.2.0"
+    ext.lifecycleKtxVersion = "2.2.0"
+    ext.navFragmentKtxVersion = '2.3.0'
+    ext.navUiKtxVersion = '2.3.0'
+    ext.navVersion = '2.1.0'
+
+    //Room
+    ext.roomRuntimeVersion = "2.2.5"
+    ext.roomCompilerVersion = "2.2.5"
+    ext.roomKtxVersion = "2.2.5"
+    ext.paging = "2.1.2"
+
+    //Retrofit
+    ext.retrofitVersion = '2.9.0'
+    ext.moshiConveterVersion = '2.9.0'
+    ext.kotlinMoshiVersion = "1.9.2"
+    ext.moshiCodegenVersion = "1.9.2"
+
+    //Testing
+    ext.jUnitVersion = "4.13"
+    ext.jUnitExtVersion = "1.1.1"
+    ext.espressoCoreVersion = "3.2.0"
+    ext.coroutinesTestVersion = '1.3.7'
+    ext.coreTestingVersion = '2.1.0'
+    ext.mockWebserverVersion = '4.4.0'
+    ext.mockkVersion = '1.9.3'
+
+    //Others
+    ext.gsonVersion = "2.8.6"
+    ext.preferenceVersion = "1.1.1"
+
     repositories {
         google()
         jcenter()
     }
-    dependencies {
-        classpath "com.android.tools.build:gradle:4.0.1"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navVersion"
+
     }
 }
 
@@ -18,6 +86,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 }
 

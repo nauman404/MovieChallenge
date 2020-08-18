@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">MovieChallenge</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="movie_fragment_label">Movies</string>
+    <string name="movie_detail_fragment_label">Movie Detail</string>
+    <string name="release_colon">"Release: "</string>
+    <string name="rating_colon">"Rating: "</string>
+    <string name="search_movies">Search Movies</string>
+    <string name="no_data">No Photo Data Found</string>
+    <string name="no_data_found">No data found</string>
+    <string name="movie_name">Title:</string>
+    <string name="movie_genres">Genres:</string>
+    <string name="movie_cast">Cast:</string>
+    <string name="release_year">Year:</string>
+
+
 </resources>

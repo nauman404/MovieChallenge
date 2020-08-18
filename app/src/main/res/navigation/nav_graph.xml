@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/MovieFragment">
+
+    <fragment
+        android:id="@+id/MovieFragment"
+        android:name="com.nauman404.moviechallenge.ui.movies.MovieFragment"
+        android:label="@string/movie_fragment_label"
+        tools:layout="@layout/fragment_movies">
+
+        <action
+            android:id="@+id/action_MovieFragment_to_MovieDetailFragment"
+            app:destination="@id/MovieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/MovieDetailFragment"
+        android:name="com.nauman404.moviechallenge.ui.moviedetails.MovieDetailFragment"
+        android:label="@string/movie_detail_fragment_label"
+        tools:layout="@layout/fragment_movie_details">
+        <argument
+            android:name="movie"
+            app:argType="com.nauman404.data.local.models.Movie" />
+    </fragment>
+</navigation>
