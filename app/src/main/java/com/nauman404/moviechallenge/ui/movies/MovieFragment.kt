@@ -107,7 +107,7 @@ class MovieFragment : BaseFragment<FragmentMoviesBinding>(
             }
         })
 
-        viewModel.movieList.observe(this, Observer {
+        viewModel.movieList().observe(this, Observer {
             showLoading(false)
             moviesAdapter.submitList(it)
             setRecyclerAdapter(false)

@@ -27,27 +27,22 @@ class MovieDetailsViewModel @Inject constructor(private val movieRepository: Mov
     val imagesLiveData: LiveData<List<String>>
         get() = _imagesLiveData
 
-
     fun getImagesRequest(title: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _imagesUiLiveData.postValue(State.loading())
             try {
-                val result = movieRepository.getImagesRequest(BuildConfig.API_KEY, title,1,20)
+                val result = movieRepository.getImagesRequest(BuildConfig.API_KEY, title,1,25)
                 val apiResponse = result.body()
-                if (result.isSuccessful && apiResponse != null) {
+                if (apiResponse != null) {
                     if(apiResponse.images.images.count() > 0){
-                        _imagesLiveData.postValue(State.success(apiResponse.images.images).data.map { it.mapPhotoUrl() }
-                        )
-                    }else{
+                        _imagesLiveData.postValue(State.success(apiResponse.images.images).data.map { it.mapPhotoUrl() })
+                    }else {
                         _imagesUiLiveData.postValue(State.error("No Photo Data Found!"))
                     }
-                }else{
-                    _imagesUiLiveData.postValue(State.error("Error Occured"))                }
-
+                }
             } catch (e: Exception) {
                 _imagesUiLiveData.postValue(State.error(e.message.toString()))
             }
         }
     }
-
 }

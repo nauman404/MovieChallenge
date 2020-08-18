@@ -36,6 +36,10 @@ android {
         dataBinding = true
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+
+    }
 }
 
 dependencies {
@@ -104,6 +108,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
     testImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
 
     implementation project(path: ':core')
     implementation project(path: ':data')

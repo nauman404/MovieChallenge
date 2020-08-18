@@ -8,6 +8,7 @@ import com.nauman404.data.local.models.Movie
 import com.nauman404.data.local.models.MoviesResponse
 import com.nauman404.data.local.models.State
 import com.nauman404.data.repositories.MovieRepository
+import com.nauman404.moviechallenge.BuildConfig
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,12 +21,14 @@ import javax.inject.Inject
 class MovieViewModel @Inject constructor(private val movieRepository: MovieRepository) :
     ViewModel() {
 
-    private val _moviesLiveData = MutableLiveData<State<List<Movie>>>()
+    private val _moviesUiLiveData = MutableLiveData<State<String>>()
 
-    val moviesLiveData: LiveData<State<List<Movie>>>
-        get() = _moviesLiveData
+    val moviesLiveData: LiveData<State<String>>
+        get() = _moviesUiLiveData
 
-    val movieList: LiveData<PagedList<Any>> = movieRepository.moviesDataSource().toLiveData(pageSize = 50)
+    fun movieList(): LiveData<PagedList<Any>> {
+        return movieRepository.moviesDataSource().toLiveData(pageSize = 25)
+    }
 
     fun movieByTitle(title: String): LiveData<PagedList<Any>>{
         val dataSourceFactory = MovieDataSourceFactory(movieRepository, title)
@@ -36,12 +39,12 @@ class MovieViewModel @Inject constructor(private val movieRepository: MovieRepos
 
     fun parseAndSaveMovies(inputStream: InputStream) {
         viewModelScope.launch(Dispatchers.IO) {
-            _moviesLiveData.postValue(State.loading())
+            _moviesUiLiveData.postValue(State.loading())
             try {
                 val result = parseMovies(inputStream)
                 result?.let {
                     insertMovies(it)
-                    _moviesLiveData.postValue(State.success(it))
+                    _moviesUiLiveData.postValue(State.success(""))
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -56,8 +59,11 @@ class MovieViewModel @Inject constructor(private val movieRepository: MovieRepos
         return adapter.fromJson(moviesString)?.movies
     }
 
-    private fun insertMovies(list: List<Movie>) {
-        movieRepository.insertMovies(list)
+    fun insertMovies(list: List<Movie>) {
+        viewModelScope.launch(Dispatchers.IO) {
+            movieRepository.insertMovies(list)
+            _moviesUiLiveData.postValue(State.success(""))
+        }
     }
 
 }
