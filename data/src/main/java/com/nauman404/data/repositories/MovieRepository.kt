@@ -29,12 +29,12 @@ class MovieRepository @Inject constructor (
                 it.year
             }.flatMap {
                 //To get top 5 of each category
-                var list = it.value.toMutableList<Any>()
-                if (list.size > 5)
-                    list = list.subList(0, 5)
+                var movieList = it.value.toMutableList<Any>()
+                if (movieList.size > 5)
+                    movieList = movieList.subList(0, 5)
                 // append the year value
-                list.add(0, it.key)
-                list
+                movieList.add(0, it.key)
+                movieList
             }
     }
 

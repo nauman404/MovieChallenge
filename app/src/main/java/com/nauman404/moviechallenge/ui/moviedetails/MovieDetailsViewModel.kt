@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * ViewModel for [MovieActivity] & [MoviesFragment]
+ * ViewModel for [MovieDetailFragment]
  */
 class MovieDetailsViewModel @Inject constructor(private val movieRepository: MovieRepository) :
     ViewModel() {

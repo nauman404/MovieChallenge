@@ -33,7 +33,7 @@ class MovieViewModel @Inject constructor(private val movieRepository: MovieRepos
     fun movieByTitle(title: String): LiveData<PagedList<Any>>{
         val dataSourceFactory = MovieDataSourceFactory(movieRepository, title)
         return dataSourceFactory.toLiveData(
-            pageSize = 25
+            pageSize = 25 //move to constants later.
         )
     }
 

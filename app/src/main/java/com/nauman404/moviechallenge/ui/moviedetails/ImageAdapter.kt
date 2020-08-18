@@ -5,8 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.nauman404.moviechallenge.R
 import kotlinx.android.synthetic.main.row_image.view.*
+
 
 class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
@@ -32,8 +36,20 @@ class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
     }
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: String) = with(itemView) {
-            Glide.with(context).load(item).into(movie_image)
+
+        private val options: RequestOptions = RequestOptions()
+            .centerCrop()
+            .placeholder(R.drawable.placeholder)
+            .error(R.drawable.placeholder)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .priority(Priority.HIGH)
+
+        fun bind(imageUrl: String) = with(itemView) {
+
+            Glide.with(context)
+                .load(imageUrl)
+                .apply(options)
+                .into(movie_image)
         }
     }
 }

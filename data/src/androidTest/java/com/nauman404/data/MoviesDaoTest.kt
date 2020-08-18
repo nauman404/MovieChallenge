@@ -1,11 +1,9 @@
 package com.nauman404.data
 
 import androidx.room.Room
-import androidx.room.paging.LimitOffsetDataSource
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.nauman404.data.local.MoviesDatabase
-import com.nauman404.moviechallenge.TestData
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
 import org.junit.After

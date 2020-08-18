@@ -22,7 +22,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailsBinding>(
     R.layout.fragment_movie_details) {
 
     private val viewModel: MovieDetailsViewModel by viewModels { viewModelProvider }
-    private lateinit var movie: Movie // State should not be in View controller But in VM. Later i will change.
+    private lateinit var movie: Movie // State should be in VM. Later I will change.
     private val imageAdapter = ImageAdapter()
 
     override fun onInitDataBinding() {

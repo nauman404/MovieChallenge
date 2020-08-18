@@ -6,11 +6,11 @@ import javax.inject.Inject
 
 class MovieDataSourceFactory @Inject constructor(
     private var moviesRepository: MovieRepository,
-    var query:String
+    private var searchQuery:String
 ) :
     DataSource.Factory<Int, Any>() {
     override fun create(): DataSource<Int, Any> {
-        return MovieDataSource(moviesRepository, query)
+        return MovieDataSource(moviesRepository, searchQuery)
     }
 
 }

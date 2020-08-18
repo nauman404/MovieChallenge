@@ -5,17 +5,14 @@ import com.nauman404.data.repositories.MovieRepository
 
 class MovieDataSource(
     var movieRepository: MovieRepository,
-    var query: String
+    var searchQuery: String
 ) :
     PageKeyedDataSource<Int, Any>() {
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, Any>
-    ) {
-        callback.onResult(movieRepository.moviesByTitle(query), null, 1)
-
-    }
+    ) { callback.onResult(movieRepository.moviesByTitle(searchQuery), null, 1) }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Any>) {
     }

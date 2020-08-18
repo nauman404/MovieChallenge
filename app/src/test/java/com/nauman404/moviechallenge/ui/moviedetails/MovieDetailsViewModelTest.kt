@@ -2,17 +2,14 @@ package com.nauman404.moviechallenge.ui.moviedetails
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.nauman404.data.local.models.State
 import com.nauman404.data.repositories.MovieRepository
 import com.nauman404.moviechallenge.BuildConfig
-import com.nauman404.moviechallenge.TestData
-import com.nauman404.moviechallenge.ui.movies.MovieViewModel
+import com.nauman404.data.TestData
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import io.mockk.verify
-import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking

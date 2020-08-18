@@ -1,4 +1,4 @@
-package com.nauman404.moviechallenge
+package com.nauman404.data
 import com.nauman404.data.local.models.Image
 import com.nauman404.data.local.models.Images
 import com.nauman404.data.local.models.ImagesWrapper
@@ -25,10 +25,10 @@ object TestData {
     }
 
     fun getTestMovies(): List<Movie> = listOf(
-        Movie(1, getTestCast(1),2009,getTestGenres(1),1,"500 Days of summer"),
-        Movie(2, getTestCast(2),2009,getTestGenres(2),1,"12 Rounds"),
-        Movie(3, getTestCast(3),2009,getTestGenres(3),1,"17 Again"),
-        Movie(4, getTestCast(4),2009,getTestGenres(4),1,"2012")
+        Movie(1, getTestCast(1),2009, getTestGenres(1),1,"500 Days of summer"),
+        Movie(2, getTestCast(2),2009, getTestGenres(2),1,"12 Rounds"),
+        Movie(3, getTestCast(3),2009, getTestGenres(3),1,"17 Again"),
+        Movie(4, getTestCast(4),2009, getTestGenres(4),1,"2012")
     )
 
     fun getTestImages(): ImagesWrapper {

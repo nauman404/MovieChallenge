@@ -32,7 +32,7 @@ class MovieFragment : BaseFragment<FragmentMoviesBinding>(
 
         binding.movieSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Timber.e(query)
+                Timber.i(query)
                 return false
             }
 
@@ -67,7 +67,7 @@ class MovieFragment : BaseFragment<FragmentMoviesBinding>(
     }
 
     private fun parseData() {
-        viewModel.parseAndSaveMovies(requireActivity().assets.open("movies.json"))
+        viewModel.parseAndSaveMovies(requireActivity().assets.open("movies.json")) //Should be in Constant. Later i will change.
     }
 
     private fun showLoading(isLoading: Boolean) {
